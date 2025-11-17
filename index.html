@@ -27,8 +27,8 @@
                         <button id="categoryFilterBtn" class="icon-btn" aria-label="Filter by category">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
                         </button>
+                        <!-- 카테고리 드롭다운 메뉴 -->
                         <div id="categoryDropdown" class="category-dropdown hidden">
-                            <!-- 카테고리 목록은 JS로 채울 예정 -->
                         </div>
                     </div>
                     <button id="showFavsBtn" class="icon-btn" aria-label="Show Favorites">
@@ -40,6 +40,11 @@
 
         <div id="loading" class="spinner hidden"></div>
         <div id="error" class="error hidden"></div>
+
+        <!-- 동적 제목 및 새로고침 버튼 영역 -->
+        <div id="resultsHeader" class="results-header hidden">
+            <h2 id="resultsTitle" class="results-title"></h2>
+        </div>
 
         <div id="results" class="results"></div>
     </div>
