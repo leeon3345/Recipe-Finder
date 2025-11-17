@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-R" />
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Recipe Finder</title>
     <link rel="stylesheet" href="./css/style.css" />
@@ -10,10 +10,19 @@
     <div class="container">
         <h1>Recipe Finder</h1>
 
-        <div class="search-box">
-            <input type="text" id="searchInput" placeholder="Enter ingredient..." />
-            <button id="searchBtn">Search</button>
-            <button id="showFavsBtn">Show Favorites</button>
+        <!-- 구글 스타일 검색창 구조로 변경 -->
+        <div class="search-container">
+            <div class="search-box">
+                <div class="left-actions">
+                    <button id="searchBtn" class="icon-btn">🔍</button>
+                </div>
+                <div class="input-wrapper">
+                    <input type="text" id="searchInput" placeholder="Search for a recipe...">
+                </div>
+                <div class="right-actions">
+                    <button id="showFavsBtn" class="icon-btn">⭐</button>
+                </div>
+            </div>
         </div>
 
         <div id="loading" class="spinner hidden"></div>

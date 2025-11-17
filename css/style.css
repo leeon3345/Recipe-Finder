@@ -8,9 +8,11 @@
 body {
     background: #111;
     color: #fff;
-    display: flex;
-    justify-content: center;
+    display: flex; /* Flexbox 레이아웃 사용 */
+    flex-direction: column; /* 아이템을 세로로 정렬 */
+    align-items: center; /* 가로축 중앙 정렬 */
     padding: 40px;
+    padding-top: 20vh; /* 화면 상단에서 20%만큼 아래로 배치하여 위치 조정 */
 }
 
 .container {
@@ -19,45 +21,66 @@ body {
 }
 
 h1 {
-    font-size: 36px;
+    font-size: 48px; /* 제목 폰트 크기 증가 */
     font-weight: 700;
-    margin-bottom: 24px;
+    margin-bottom: 50px; /* 검색창과의 간격 조정 */
     text-align: center;
+}
+
+.search-container {
+    width: 100%;
+    max-width: 580px; /* 구글 검색창과 유사한 너비 */
+    margin: 0 auto 40px; /* 좌우 마진을 auto로 설정하여 중앙 정렬 */
 }
 
 .search-box {
     display: flex;
-    gap: 12px;
-    margin-bottom: 24px;
+    align-items: center;
+    background: #1e1e1e;
+    border-radius: 24px; /* 둥근 모서리 */
+    border: 1px solid #3a3a3a;
+    padding: 0 8px;
+}
+
+.search-box:hover,
+.search-box:focus-within {
+    background: #303134;
+    border-color: #5f6368;
 }
 
 .search-box input {
     flex: 1;
-    padding: 14px;
-    border-radius: 8px;
+    padding: 12px 10px;
     border: none;
-    background: #1e1e1e;
+    background: transparent;
     color: #fff;
     font-size: 16px;
+    outline: none;
+    width: 100%;
 }
 
-.search-box button {
-    padding: 14px 20px;
-    font-size: 16px;
+.input-wrapper {
+    flex: 1;
+}
+
+.left-actions, .right-actions {
+    display: flex;
+    align-items: center;
+}
+
+.icon-btn {
+    background: transparent;
     border: none;
-    border-radius: 8px;
-    background: #3a3a3a;
-    color: #fff;
     cursor: pointer;
-    transition: 0.2s;
-}
-
-#showFavsBtn {
-    background: #1d1d1d;
-}
-
-.search-box button:hover {
-    background: #505050;
+    font-size: 20px;
+    padding: 8px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #9aa0a6;
 }
 
 .hidden {
