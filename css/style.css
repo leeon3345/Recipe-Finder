@@ -29,7 +29,7 @@ h1 {
 
 .search-container {
     width: 100%;
-    max-width: 580px; /* 구글 검색창과 유사한 너비 */
+    max-width: 720px; /* 검색창 가로 길이를 늘려 더 길게 표시 */
     margin: 0 auto 40px; /* 좌우 마진을 auto로 설정하여 중앙 정렬 */
 }
 

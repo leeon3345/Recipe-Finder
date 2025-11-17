@@ -162,3 +162,11 @@ results.addEventListener("click", (e) => {
         toggleFavorite(mealId, e.target);
     }
 });
+
+// 검색창이 비워지면 결과 숨기기
+searchInput.addEventListener("input", () => {
+    if (searchInput.value.trim() === "") {
+        clearResults();
+        clearError();
+    }
+});
