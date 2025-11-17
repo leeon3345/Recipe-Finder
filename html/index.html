@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-R" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recipe Finder</title>
+    <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+    <div class="container">
+        <h1>Recipe Finder</h1>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Enter ingredient..." />
+            <button id="searchBtn">Search</button>
+            <button id="showFavsBtn">Show Favorites</button>
+        </div>
+
+        <div id="loading" class="spinner hidden"></div>
+        <div id="error" class="error hidden"></div>
+
+        <div id="results" class="results"></div>
+    </div>
+
+    <script src="./js/app.js"></script>
+</body>
+</html>
