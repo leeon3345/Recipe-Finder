@@ -143,6 +143,22 @@ h1 {
     margin-top: auto; /* 항상 카드 하단에 위치 */
 }
 
+.card-buttons {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* 버튼 사이 간격 */
+}
+
+.share-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: #9aa0a6;
+    padding: 0;
+    transition: transform 0.2s;
+}
+
 /* 로딩 스피너 */
 .spinner {
     width: 40px;
@@ -172,7 +188,7 @@ h1 {
     line-height: 1; /* 아이콘 정렬 */
 }
 
-.fav-btn:hover {
+.fav-btn:hover, .share-btn:hover {
     transform: scale(1.1);
 }
 

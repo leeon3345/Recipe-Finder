@@ -94,12 +94,18 @@ function displayResults(meals) {
                 <div class="card-actions">
                     ${recipeLink ?
                         `<a href="${recipeLink}" target="_blank">View Recipe →</a>` :
-                        '<span></span>' /* 링크 없을 때 공간 유지 */
+                        '<span></span>'
                     }
-                    <button 
-                        class="fav-btn ${isFavorited ? 'favorited' : ''}" 
-                        data-id="${meal.idMeal}"
-                    >${isFavorited ? '⭐' : '☆'}</button>
+                    <div class="card-buttons">
+                        <button class="share-btn" data-link="${recipeLink || ''}" data-title="${meal.strMeal}" title="Share Recipe">🔗</button>
+                        <button 
+                            class="fav-btn ${isFavorited ? 'favorited' : ''}" 
+                            data-id="${meal.idMeal}"
+                            title="Add to Favorites"
+                        >
+                            ${isFavorited ? '⭐' : '☆'}
+                        </button>
+                    </div>
                 </div>
             </div>
         `;
@@ -125,6 +131,37 @@ function toggleFavorite(mealId, btn) {
     localStorage.setItem('favorites', JSON.stringify(favorites));
 }
 
+// --- 링크 공유 ---
+async function shareRecipe(btn) {
+    const link = btn.dataset.link;
+    const title = btn.dataset.title;
+
+    if (!link) {
+        alert("No recipe link available to share.");
+        return;
+    }
+
+    if (navigator.share) {
+        // Web Share API 사용 (모바일 등 지원 환경)
+        try {
+            await navigator.share({
+                title: `Recipe: ${title}`,
+                text: `Check out this recipe for ${title}!`,
+                url: link,
+            });
+        } catch (error) {
+            console.error('Error sharing:', error);
+        }
+    } else {
+        // 클립보드에 복사 (데스크톱 등 미지원 환경)
+        navigator.clipboard.writeText(link).then(() => {
+            alert(`Recipe link copied to clipboard!\n${link}`);
+        }).catch(err => {
+            console.error('Failed to copy:', err);
+            alert("Failed to copy link.");
+        });
+    }
+}
 
 // --- 유틸 함수 ---
 function showLoading(isLoading) {
@@ -160,6 +197,10 @@ results.addEventListener("click", (e) => {
     if (e.target.classList.contains("fav-btn")) {
         const mealId = e.target.dataset.id;
         toggleFavorite(mealId, e.target);
+    }
+    // .share-btn 클릭 감지
+    if (e.target.classList.contains("share-btn")) {
+        shareRecipe(e.target);
     }
 });
 
