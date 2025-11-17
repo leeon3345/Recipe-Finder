@@ -81,7 +81,8 @@ h1 {
     border-radius: 10px;
     padding: 14px;
     transition: 0.2s;
-    position: relative; /* 즐겨찾기 버튼 위치의 기준점 */
+    display: flex; /* 카드 내부 아이템 정렬 */
+    flex-direction: column;
 }
 
 .card:hover {
@@ -93,17 +94,30 @@ h1 {
     border-radius: 8px;
 }
 
+.card-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* 카드의 남은 공간을 모두 차지 */
+    margin-top: 10px;
+}
+
 .card-title {
     font-size: 18px;
-    margin: 10px 0;
     font-weight: 600;
-    padding-right: 30px; /* 즐겨찾기 버튼 영역 확보 */
+    flex-grow: 1; /* 제목이 길어질 경우 공간 차지 */
 }
 
 .card a {
     text-decoration: none;
     color: #9bbcff;
     font-size: 14px;
+}
+
+.card-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto; /* 항상 카드 하단에 위치 */
 }
 
 /* 로딩 스피너 */
@@ -124,19 +138,40 @@ h1 {
 
 /* 즐겨찾기 버튼 */
 .fav-btn {
-    position: absolute;
-    top: 20px;
-    right: 14px;
     background: none;
     border: none;
     font-size: 24px;
     cursor: pointer;
-    color: #505050; /* 기본 색상 */
     transition: 0.2s;
+    color: #fff; /* 기본 별(☆) 색상 */
+    text-shadow: 0 0 4px rgba(0, 0, 0, 0.6); /* 가독성 위한 그림자 */
+    padding: 0; /* 버튼 자체의 불필요한 여백 제거 */
+    line-height: 1; /* 아이콘 정렬 */
 }
 
 .fav-btn:hover {
     transform: scale(1.1);
 }
 
+.fav-btn.favorited {
+    color: gold; /* 활성화된 별(⭐) 색상 */
+    text-shadow: none; /* 활성화 시 그림자 제거 */
+    animation: pop 0.4s ease-out; /* 클릭 시 애니메이션 적용 */
+}
 
+/* 즐겨찾기 버튼 클릭 애니메이션 */
+@keyframes pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.4); }
+    100% { transform: scale(1); }
+}
+
+/* 반응형 디자인 (모바일) */
+@media (max-width: 600px) {
+    body {
+        padding: 20px;
+    }
+    .results {
+        grid-template-columns: 1fr; /* 모바일에서는 1열로 표시 */
+    }
+}

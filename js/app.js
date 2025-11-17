@@ -89,19 +89,19 @@ function displayResults(meals) {
 
         card.innerHTML = `
             <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
-            <div class="card-title">${meal.strMeal}</div>
-            
-            ${recipeLink ?
-                `<a href="${recipeLink}" target="_blank">View Recipe →</a>` :
-                '<p>No recipe link available</p>'
-            }
-
-            <button 
-                class="fav-btn ${isFavorited ? 'favorited' : ''}" 
-                data-id="${meal.idMeal}"
-            >
-                ${isFavorited ? '⭐' : '☆'}
-            </button>
+            <div class="card-content">
+                <div class="card-title">${meal.strMeal}</div>
+                <div class="card-actions">
+                    ${recipeLink ?
+                        `<a href="${recipeLink}" target="_blank">View Recipe →</a>` :
+                        '<span></span>' /* 링크 없을 때 공간 유지 */
+                    }
+                    <button 
+                        class="fav-btn ${isFavorited ? 'favorited' : ''}" 
+                        data-id="${meal.idMeal}"
+                    >${isFavorited ? '⭐' : '☆'}</button>
+                </div>
+            </div>
         `;
 
         results.appendChild(card);
