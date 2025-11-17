@@ -18,6 +18,8 @@ const API_URL_LIST_CATEGORIES = "https://www.themealdb.com/api/json/v1/1/list.ph
 
 // 즐겨찾기 목록 (localStorage에서 불러오기)
 let favorites = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
+// 만약 데이터가 배열이 아니라면, 빈 배열로 초기화하여 오류를 방지합니다.
+if (!Array.isArray(favorites)) favorites = [];
 let selectedCategory = null; // 현재 선택된 카테고리
 let allCategories = []; // 모든 카테고리를 저장하는 배열
 
@@ -101,6 +103,7 @@ function clearResults() {
 function clearAll() {
     clearResults();
     clearError();
+    resultsHeader.classList.add('hidden'); // 제목 컨테이너 숨기기
 }
 
 // --- 즐겨찾기 기능 ---
@@ -111,7 +114,6 @@ function clearAll() {
 async function displayFavoriteRecipes() {
     showLoading(true);
     clearAll();
-    resultsHeader.classList.add('hidden');
 
     if (favorites.length === 0) {
         showError("You have no favorite recipes yet.");
@@ -218,6 +220,14 @@ function setupEventListeners() {
         if (e.key === "Enter") searchRecipes();
     });
 
+    // 검색창이 비워지면 결과 숨기기
+    searchInput.addEventListener("input", () => {
+        if (searchInput.value.trim() === "") {
+            clearResults();
+            clearError();
+            resultsHeader.classList.add('hidden'); // 제목 컨테이너 숨기기
+        }
+    });
     showFavsBtn.addEventListener('click', displayFavoriteRecipes);
 
     // 카테고리 필터 버튼 클릭: 카테고리 목록 표시
