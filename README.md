@@ -4,7 +4,7 @@ TheMealDB API를 활용하여 원하는 레시피를 검색하고 관리할 수 
 
 <br>
 
-![Recipe Finder Screenshot](./images/screenshot.png)
+![Recipe Finder Screenshot](./img/screenshot.png)
 *(실제 프로젝트 스크린샷)*
 
 <br>
